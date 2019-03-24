@@ -1,5 +1,12 @@
 # stupid
-a stupid workaround when using multiple inheritance and `__slots__`
+
+A stupid workaround when using multiple inheritance and `__slots__`
+
+# installation
+
+`pip install stupid`
+
+# example
 
 ```
 from hashlib import sha512
