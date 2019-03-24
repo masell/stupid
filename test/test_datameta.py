@@ -77,3 +77,41 @@ class TestDataMeta(TestCase):
         self.assertIsInstance(t, Test)
         self.assertIsInstance(t, Test2)
         self.assertIsInstance(t, Test3)
+
+    def test_default_value(self):
+        class Test(StupidData):
+            a: int = 99
+
+        self.assertEqual(Test().a, 99)
+
+    def test_default_value_ins(self):
+        class Test(StupidData):
+            a: int = 99
+
+        self.assertEqual(Test(97).a, 97)
+
+    def test_default_value_inherit(self):
+        class Test1(StupidData):
+            a: int = 97
+
+        class Test2(StupidData):
+            b: str = 'foo'
+
+        class Test3(Test1, Test2): pass
+
+        ins = Test3()
+        self.assertEqual(ins.a, 97)
+        self.assertEqual(ins.b, 'foo')
+
+    def test_default_value_ins_inherit(self):
+        class Test1(StupidData):
+            a: int = 97
+
+        class Test2(StupidData):
+            b: str = 'foo'
+
+        class Test3(Test1, Test2): pass
+
+        ins = Test3(98, 'bar')
+        self.assertEqual(ins.a, 98)
+        self.assertEqual(ins.b, 'bar')

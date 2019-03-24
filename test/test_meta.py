@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from unittest import TestCase
 from stupid import StupidMeta
 
@@ -55,3 +56,17 @@ class TestNew(TestCase):
 
         a = A()
         self.assertNotIsInstance(a, B)
+
+    def test_class_values(self):
+        class A(metaclass=StupidMeta):
+            b: int = 10
+
+        self.assertEqual(A.b, 10)
+
+    def test_default_value(self):
+        class C(metaclass=StupidMeta):
+            b: int = 11
+
+        i = C()
+        i.b = 12
+        self.assertEqual(i.b, 12)

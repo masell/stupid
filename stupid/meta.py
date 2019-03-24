@@ -22,12 +22,20 @@ class StupidMeta(ABCMeta):
         bases = tuple(base.__stupid__ if hasattr(base, '__stupid__') else base for base in bases)
         cls = super().__new__(mcls, name, bases, namespace, **kwargs)
 
-        namespace['__slots__'] = tuple(annotations.keys())
+        slots = tuple(annotations.keys())
+        {slot: namespace.pop(slot, None) for slot in slots}
+        namespace['__slots__'] = slots
         namespace['__stupid__'] = cls
-
         ncls = super().__new__(mcls, name, bases, namespace, **kwargs)
 
         return ncls
+
+    def __getattribute__(self, name):
+        slots = super().__getattribute__('__slots__')
+        if name in slots:
+            stupid = super().__getattribute__('__stupid__')
+            return getattr(stupid, name)
+        return super().__getattribute__(name)
 
     def __instancecheck__(cls, instance):
         return super(StupidMeta, cls.__stupid__).__instancecheck__(instance)
