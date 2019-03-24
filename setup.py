@@ -17,7 +17,7 @@ setup(
     license='BSD',
     install_requires=['dataclasses'],
     description="Support for multiple inheritance and __slots__",
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
     long_description_content_type='text/markdown'
 )
 
