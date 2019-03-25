@@ -115,3 +115,21 @@ class TestDataMeta(TestCase):
         ins = Test3(98, 'bar')
         self.assertEqual(ins.a, 98)
         self.assertEqual(ins.b, 'bar')
+
+    def test_order_multi_inherit(self):
+        class A(StupidData):
+            a: int
+            b: int=1
+
+        class B(StupidData):
+            c: int
+            d: int=1
+
+        class C(A, B):
+            pass
+
+        c = C(1, 2, 3, 4) # a, c, b, d
+        self.assertEqual(c.a, 1)
+        self.assertEqual(c.c, 2)
+        self.assertEqual(c.b, 3)
+        self.assertEqual(c.d, 4)

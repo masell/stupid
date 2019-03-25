@@ -21,6 +21,15 @@ class StupidMeta(ABCMeta):
 
         bases = tuple(base.__stupid__ if hasattr(base, '__stupid__') else base for base in bases)
         cls = super().__new__(mcls, name, bases, namespace, **kwargs)
+        a_list = {}
+        a_kw = {}
+        for fieldname,field in annotations.items():
+            try:
+                getattr(cls, fieldname)
+                a_kw[fieldname] = field
+            except:
+                a_list[fieldname] = field
+        namespace['__annotations__'] = {**a_list, **a_kw}
 
         slots = tuple(annotations.keys())
         {slot: namespace.pop(slot, None) for slot in slots}
