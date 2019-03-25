@@ -4,10 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+twine = "*"
 
 [packages]
 dataclasses = {version = "*", markers="python_version < '3.7'"}
-
 
 [requires]
 python_version = "3.6"

@@ -1,8 +1,9 @@
+import setuptools # noqa Needed for bdist_wheel
 from distutils.core import setup
 
 setup(
     name='stupid',
-    version='0.1',
+    version='1.0.0',
     author='masell',
     url='https://github.com/masell/stupid',
     packages=['stupid'],
