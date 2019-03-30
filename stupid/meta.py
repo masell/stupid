@@ -49,6 +49,14 @@ class StupidMeta(ABCMeta):
     def __instancecheck__(cls, instance):
         return super(StupidMeta, cls.__stupid__).__instancecheck__(instance)
 
+    def __subclasscheck__(cls, subclass):
+        try:
+            stupid = cls.__stupid__
+        except AttributeError:
+            return False
+        return super(StupidMeta, stupid).__subclasscheck__(subclass)
+
+
 class Stupid(metaclass=StupidMeta):
     __slots__ = ()
 

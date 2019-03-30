@@ -70,3 +70,21 @@ class TestNew(TestCase):
         i = C()
         i.b = 12
         self.assertEqual(i.b, 12)
+
+    def test_is_subclass(self):
+        class A(Test):
+            pass
+
+        self.assertTrue(issubclass(A, Test))
+
+    def test_is_not_subclass_meta(self):
+        class A(StupidData):
+            pass
+
+        self.assertFalse(issubclass(A, Test))
+
+    def test_is_not_subclass(self):
+        class A:
+            pass
+
+        self.assertFalse(issubclass(A, Test))
