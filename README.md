@@ -51,3 +51,17 @@ True
 >>> isinstance(payload, AccessData)
 True
 ```
+
+
+issubclass
+```
+>>> from stupid import StupidData
+>>> class A(StupidData): pass
+>>> class B(A): pass
+>>> class C:pass
+>>>
+>>> issubclass(B, A)
+True
+>>> issubclass(B, C)
+False
+```

@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name='stupid',
-    version='1.0.1',
+    version='1.1.0',
     author='masell',
     url='https://github.com/masell/stupid',
     packages=['stupid'],
@@ -21,4 +21,3 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown'
 )
-
