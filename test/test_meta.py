@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from unittest import TestCase
 from stupid import StupidMeta
+from stupid import StupidData
 
 class Test(metaclass=StupidMeta):
     a: int

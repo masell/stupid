@@ -53,7 +53,7 @@ class StupidMeta(ABCMeta):
         try:
             stupid = cls.__stupid__
         except AttributeError:
-            return False
+            stupid = cls
         return super(StupidMeta, stupid).__subclasscheck__(subclass)
 
 
